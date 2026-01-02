@@ -36,7 +36,11 @@ class SnappingManager {
     var dragPrevY: Double?
     var dragRestrictionExpirationTimestamp: UInt64 = 0
     var dragRestrictionExpired: Bool { DispatchTime.now().uptimeMilliseconds > dragRestrictionExpirationTimestamp }
-    
+
+    // Custom Layout support
+    var currentCustomZone: CustomZone?
+    var currentCustomScreen: NSScreen?
+
     var box: FootprintWindow?
 
     let screenDetection = ScreenDetection()
@@ -198,7 +202,13 @@ class SnappingManager {
                 initialWindowRect = windowElement?.frame
             }
         case .leftMouseUp:
-            if let currentSnapArea = self.currentSnapArea {
+            // Custom zone snap takes priority
+            if let customZone = currentCustomZone, let customScreen = currentCustomScreen {
+                box?.orderOut(nil)
+                snapToCustomZone(zone: customZone, screen: customScreen, windowElement: windowElement, windowId: windowId)
+                currentCustomZone = nil
+                currentCustomScreen = nil
+            } else if let currentSnapArea = self.currentSnapArea {
                 box?.orderOut(nil)
                 currentSnapArea.action.postSnap(windowElement: windowElement, windowId: windowId, screen: currentSnapArea.screen)
                 self.currentSnapArea = nil
@@ -264,10 +274,39 @@ class SnappingManager {
                         box?.orderOut(nil)
                         currentSnapArea = nil
                     }
+                    if currentCustomZone != nil {
+                        box?.orderOut(nil)
+                        currentCustomZone = nil
+                        currentCustomScreen = nil
+                    }
                     return
                 }
-                
-                if let snapArea = snapAreaContainingCursor(priorSnapArea: currentSnapArea) {
+
+                // Check for Shift key - if pressed, use custom layout zones
+                let shiftPressed = event.modifierFlags.contains(.shift)
+
+                if shiftPressed, let (zone, screen) = customLayoutZoneContainingCursor() {
+                    // Custom zone detected
+                    if currentCustomZone?.id != zone.id {
+                        // Clear standard snap area
+                        currentSnapArea = nil
+
+                        if Defaults.hapticFeedbackOnSnap.userEnabled {
+                            NSHapticFeedbackManager.defaultPerformer.perform(.alignment, performanceTime: .now)
+                        }
+
+                        let zoneRect = zone.absoluteRect(for: screen.adjustedVisibleFrame())
+
+                        if box == nil {
+                            box = FootprintWindow()
+                        }
+                        box!.setFrame(zoneRect, display: true)
+                        box!.orderFront(nil)
+
+                        currentCustomZone = zone
+                        currentCustomScreen = screen
+                    }
+                } else if !shiftPressed, let snapArea = snapAreaContainingCursor(priorSnapArea: currentSnapArea) {
                     if snapArea == currentSnapArea {
                         return
                     }
@@ -300,10 +339,19 @@ class SnappingManager {
                     }
                     
                     currentSnapArea = snapArea
+                    // Clear custom zone if standard snap is active
+                    currentCustomZone = nil
+                    currentCustomScreen = nil
                 } else {
+                    // No snap area detected
                     if currentSnapArea != nil {
                         box?.orderOut(nil)
                         currentSnapArea = nil
+                    }
+                    if currentCustomZone != nil {
+                        box?.orderOut(nil)
+                        currentCustomZone = nil
+                        currentCustomScreen = nil
                     }
                 }
             }
