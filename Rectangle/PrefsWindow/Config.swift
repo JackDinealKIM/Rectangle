@@ -35,7 +35,7 @@ extension Defaults {
             codableDefaults[exportableDefault.key] = exportableDefault.toCodable()
         }
                 
-        let config = Config(bundleId: "com.knollsoft.Rectangle",
+        let config = Config(bundleId: "com.zonesnap.ZoneSnap",
                             version: version,
                             shortcuts: shortcuts,
                             defaults: codableDefaults)
@@ -89,15 +89,15 @@ extension Defaults {
     
     static func loadFromSupportDir() {
         if let rectangleSupportURL = getSupportDir()?
-            .appendingPathComponent("Rectangle", isDirectory: true) {
-            
-            let configURL = rectangleSupportURL.appendingPathComponent("RectangleConfig.json")
+            .appendingPathComponent("ZoneSnap", isDirectory: true) {
+
+            let configURL = rectangleSupportURL.appendingPathComponent("ZoneSnapConfig.json")
                         
             let exists = try? configURL.checkResourceIsReachable()
             if exists == true {
                 load(fileUrl: configURL)
                 do {
-                    let newFilename = "RectangleConfig\(timestamp()).json"
+                    let newFilename = "ZoneSnapConfig\(timestamp()).json"
                     
                     try FileManager.default.moveItem(atPath: configURL.path, toPath: rectangleSupportURL.appendingPathComponent(newFilename).path)
                 } catch {

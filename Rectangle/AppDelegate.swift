@@ -7,8 +7,9 @@
 //
 
 import Cocoa
-import Sparkle
+// import Sparkle  // Disabled auto-update feature
 import ServiceManagement
+import SwiftUI
 import os.log
 
 @NSApplicationMain
@@ -19,7 +20,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     private let accessibilityAuthorization = AccessibilityAuthorization()
     private let statusItem = RectangleStatusItem.instance
     static let windowHistory = WindowHistory()
-    static let updaterController = SPUStandardUpdaterController(updaterDelegate: nil, userDriverDelegate: nil)
+    // static let updaterController = SPUStandardUpdaterController(updaterDelegate: nil, userDriverDelegate: nil)  // Disabled
 
     private var shortcutManager: ShortcutManager!
     private var windowManager: WindowManager!
@@ -65,11 +66,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         mainStatusMenu.autoenablesItems = false
         addWindowActionMenuItems()
- 
-        checkAutoCheckForUpdates()
-        
+
+        // checkAutoCheckForUpdates()  // Disabled auto-update
+
         Notification.Name.configImported.onPost(using: { _ in
-            self.checkAutoCheckForUpdates()
+            // self.checkAutoCheckForUpdates()  // Disabled
             self.statusItem.refreshVisibility()
             self.applicationToggle.reloadFromDefaults()
             self.shortcutManager.reloadFromDefaults()
@@ -113,9 +114,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         Notification.Name.appWillBecomeActive.post()
     }
     
-    func checkAutoCheckForUpdates() {
-        Self.updaterController.updater.automaticallyChecksForUpdates = Defaults.SUEnableAutomaticChecks.enabled
-    }
+    // Disabled auto-update feature
+    // func checkAutoCheckForUpdates() {
+    //     Self.updaterController.updater.automaticallyChecksForUpdates = Defaults.SUEnableAutomaticChecks.enabled
+    // }
     
     func accessibilityTrusted() {
         self.windowCalculationFactory = WindowCalculationFactory()
@@ -242,7 +244,18 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBAction func viewLogging(_ sender: Any) {
         Logger.showLogging(sender: sender)
     }
-    
+
+    @IBAction func openCustomLayouts(_ sender: Any) {
+        let hostingController = NSHostingController(rootView: LayoutManagerView())
+        let window = NSWindow(contentViewController: hostingController)
+        window.title = "Custom Layouts"
+        window.setContentSize(NSSize(width: 900, height: 600))
+        window.styleMask = [.titled, .closable, .resizable, .miniaturizable]
+        window.center()
+        NSApp.activate(ignoringOtherApps: true)
+        window.makeKeyAndOrderFront(nil)
+    }
+
     @IBAction func ignoreFrontMostApp(_ sender: NSMenuItem) {
         if sender.state == .on {
             applicationToggle.enableApp()
@@ -251,9 +264,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
     
-    @IBAction func checkForUpdates(_ sender: Any) {
-        Self.updaterController.checkForUpdates(sender)
-    }
+    // Disabled auto-update feature
+    // @IBAction func checkForUpdates(_ sender: Any) {
+    //     Self.updaterController.checkForUpdates(sender)
+    // }
     
     @IBAction func authorizeAccessibility(_ sender: Any) {
         accessibilityAuthorization.showAuthorizationWindow()

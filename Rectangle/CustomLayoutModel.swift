@@ -21,11 +21,11 @@ struct CustomZone: Codable, Identifiable, Equatable {
         self.name = name
     }
 
-    /// 실제 화면 좌표로 변환 (y 좌표 반전: 정규화는 상단 원점, macOS는 하단 원점)
+    /// 실제 화면 좌표로 변환
     func absoluteRect(for screenFrame: CGRect) -> CGRect {
         return CGRect(
             x: screenFrame.minX + rect.x * screenFrame.width,
-            y: screenFrame.maxY - (rect.y + rect.height) * screenFrame.height,
+            y: screenFrame.minY + rect.y * screenFrame.height,
             width: rect.width * screenFrame.width,
             height: rect.height * screenFrame.height
         )
@@ -52,11 +52,11 @@ struct NormalizedRect: Codable, Equatable {
         self.height = height
     }
 
-    /// CGRect를 정규화된 좌표로 변환 (y 좌표 반전: macOS는 하단 원점, 정규화는 상단 원점)
+    /// CGRect를 정규화된 좌표로 변환
     static func fromAbsolute(_ rect: CGRect, screenFrame: CGRect) -> NormalizedRect {
         return NormalizedRect(
             x: (rect.minX - screenFrame.minX) / screenFrame.width,
-            y: 1.0 - (rect.maxY - screenFrame.minY) / screenFrame.height,
+            y: (rect.minY - screenFrame.minY) / screenFrame.height,
             width: rect.width / screenFrame.width,
             height: rect.height / screenFrame.height
         )
@@ -236,17 +236,6 @@ class CustomLayoutManager: ObservableObject {
                 screenIdentifier: screenId
             ),
 
-            // Three Rows (3개 가로 분할)
-            CustomLayout(
-                name: "Three Rows",
-                zones: [
-                    CustomZone(rect: NormalizedRect(x: 0.0, y: 0.0, width: 1.0, height: 0.33)),
-                    CustomZone(rect: NormalizedRect(x: 0.0, y: 0.33, width: 1.0, height: 0.34)),
-                    CustomZone(rect: NormalizedRect(x: 0.0, y: 0.67, width: 1.0, height: 0.33))
-                ],
-                screenIdentifier: screenId
-            ),
-
             // Coding Setup (왼쪽 넓게 + 오른쪽 2분할)
             CustomLayout(
                 name: "Coding Setup",
@@ -254,17 +243,6 @@ class CustomLayoutManager: ObservableObject {
                     CustomZone(rect: NormalizedRect(x: 0.0, y: 0.0, width: 0.6, height: 1.0), name: "Editor"),
                     CustomZone(rect: NormalizedRect(x: 0.6, y: 0.0, width: 0.4, height: 0.5), name: "Terminal"),
                     CustomZone(rect: NormalizedRect(x: 0.6, y: 0.5, width: 0.4, height: 0.5), name: "Browser")
-                ],
-                screenIdentifier: screenId
-            ),
-
-            // Coding Setup Reverse (오른쪽 넓게 + 왼쪽 2분할)
-            CustomLayout(
-                name: "Coding Setup Reverse",
-                zones: [
-                    CustomZone(rect: NormalizedRect(x: 0.0, y: 0.0, width: 0.4, height: 0.5), name: "Terminal"),
-                    CustomZone(rect: NormalizedRect(x: 0.0, y: 0.5, width: 0.4, height: 0.5), name: "Browser"),
-                    CustomZone(rect: NormalizedRect(x: 0.4, y: 0.0, width: 0.6, height: 1.0), name: "Editor")
                 ],
                 screenIdentifier: screenId
             )

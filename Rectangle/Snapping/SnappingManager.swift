@@ -515,4 +515,73 @@ class SnappingManager {
         
         return nil
     }
+
+    // MARK: - Custom Layout Support
+
+    /// Shift 키를 누른 상태에서 커스텀 레이아웃 존을 확인
+    func customLayoutZoneContainingCursor() -> (zone: CustomZone, screen: NSScreen)? {
+        let loc = NSEvent.mouseLocation
+
+        for screen in NSScreen.screens {
+            let screenId = CustomLayoutManager.screenIdentifier(for: screen)
+
+            // 해당 스크린의 활성 레이아웃 가져오기
+            guard let activeLayout = CustomLayoutManager.shared.getActiveLayout(forScreen: screenId) else {
+                continue
+            }
+
+            // 커서가 스크린 안에 있는지 확인
+            guard screen.frame.contains(loc) else { continue }
+
+            // 정규화된 좌표로 변환 (y 좌표 반전: macOS는 하단 원점, CustomZone은 상단 원점)
+            let normalizedPoint = CGPoint(
+                x: (loc.x - screen.frame.minX) / screen.frame.width,
+                y: 1.0 - (loc.y - screen.frame.minY) / screen.frame.height
+            )
+
+            // 커서가 포함된 존 찾기
+            if let zone = activeLayout.zone(at: normalizedPoint) {
+                return (zone, screen)
+            }
+        }
+
+        return nil
+    }
+
+    /// 커스텀 존에 윈도우 스냅
+    func snapToCustomZone(zone: CustomZone, screen: NSScreen, windowElement: AccessibilityElement?, windowId: CGWindowID?) {
+        guard let windowElement = windowElement else { return }
+
+        let zoneRect = zone.absoluteRect(for: screen.adjustedVisibleFrame())
+
+        // Gap 적용
+        let screenId = CustomLayoutManager.screenIdentifier(for: screen)
+        let gapSize = CustomLayoutManager.shared.getActiveLayout(forScreen: screenId)?.gapSize ?? 0
+        let finalRect = applyGapsToRect(zoneRect, gapSize: gapSize)
+
+        // 윈도우 이동/리사이징
+        windowElement.setFrame(finalRect, adjustSizeFirst: false)
+
+        // 히스토리 저장
+        if let windowId = windowId {
+            AppDelegate.windowHistory.lastRectangleActions[windowId] = RectangleAction(
+                action: .specified,
+                subAction: nil,
+                rect: finalRect,
+                count: 1
+            )
+        }
+    }
+
+    private func applyGapsToRect(_ rect: CGRect, gapSize: Int) -> CGRect {
+        guard gapSize > 0 else { return rect }
+
+        let gap = CGFloat(gapSize)
+        return CGRect(
+            x: rect.minX + gap,
+            y: rect.minY + gap,
+            width: rect.width - gap * 2,
+            height: rect.height - gap * 2
+        )
+    }
 }

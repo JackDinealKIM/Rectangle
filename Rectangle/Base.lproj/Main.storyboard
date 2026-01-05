@@ -24,6 +24,11 @@
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="VOq-y0-SEH"/>
                                         <menuItem title="Preferences…" keyEquivalent="," id="BOF-NM-1cW"/>
+                                        <menuItem title="Custom Layouts…" keyEquivalent="l" id="CL-menu-item">
+                                            <connections>
+                                                <action selector="openCustomLayouts:" target="Voe-Tx-rLC" id="CL-action-connect"/>
+                                            </connections>
+                                        </menuItem>
                                         <menuItem isSeparatorItem="YES" id="wFC-TO-SCJ"/>
                                         <menuItem title="Services" id="NMo-om-nkz">
                                             <modifierMask key="keyEquivalentModifierMask"/>
@@ -241,6 +246,12 @@
                                 <action selector="openPreferences:" target="Voe-Tx-rLC" id="EgB-O8-H7c"/>
                             </connections>
                         </menuItem>
+                        <menuItem title="Custom Layouts…" id="CL-status-menu">
+                            <modifierMask key="keyEquivalentModifierMask"/>
+                            <connections>
+                                <action selector="openCustomLayouts:" target="Voe-Tx-rLC" id="CL-status-action"/>
+                            </connections>
+                        </menuItem>
                         <menuItem title="About" id="gFy-Zj-RGl">
                             <modifierMask key="keyEquivalentModifierMask"/>
                             <connections>
@@ -251,12 +262,6 @@
                             <modifierMask key="keyEquivalentModifierMask"/>
                             <connections>
                                 <action selector="viewLogging:" target="Voe-Tx-rLC" id="8cH-2P-yKC"/>
-                            </connections>
-                        </menuItem>
-                        <menuItem title="Check for Updates…" id="HIK-3r-i7E">
-                            <modifierMask key="keyEquivalentModifierMask"/>
-                            <connections>
-                                <action selector="checkForUpdates:" target="Voe-Tx-rLC" id="kWZ-ie-6y9"/>
                             </connections>
                         </menuItem>
                         <menuItem title="Quit Rectangle" keyEquivalent="q" id="A66-A4-cGD">
@@ -2661,6 +2666,7 @@
                         <tabViewItem label="Shortcuts" image="keyboardToolbarTemplate" id="uw2-9W-2jq"/>
                         <tabViewItem label="Snap Areas" image="snapAreaTemplate" id="Fap-R2-Aj6"/>
                         <tabViewItem label="General" image="toolbarSettingsTemplate" id="gtf-PD-IHm"/>
+                        <tabViewItem label="Custom Layouts" image="NSActionTemplate" id="CL-tab-item"/>
                     </tabViewItems>
                     <viewControllerTransitionOptions key="transitionOptions" allowUserInteraction="YES"/>
                     <tabView key="tabView" type="noTabsNoBorder" id="Tya-24-HNL">
@@ -2676,6 +2682,7 @@
                         <segue destination="zlF-FD-XEr" kind="relationship" relationship="tabItems" id="Q5z-Um-3xn"/>
                         <segue destination="t2d-Q7-RLy" kind="relationship" relationship="tabItems" id="Tnv-BY-sch"/>
                         <segue destination="yhc-gS-h02" kind="relationship" relationship="tabItems" id="LMQ-qb-ja6"/>
+                        <segue destination="CL-tab-vc" kind="relationship" relationship="tabItems" id="CL-tab-segue"/>
                     </connections>
                 </tabViewController>
                 <customObject id="CxR-5G-Y25" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
@@ -4499,6 +4506,19 @@ DQ
                 <customObject id="bNa-zL-IZp" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-204" y="1379"/>
+        </scene>
+        <!--Custom Layouts Tab View Controller-->
+        <scene sceneID="CL-scene-id">
+            <objects>
+                <viewController storyboardIdentifier="CustomLayoutsTabViewController" id="CL-tab-vc" customClass="CustomLayoutsTabViewController" customModule="Rectangle" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="CL-view-id">
+                        <rect key="frame" x="0.0" y="0.0" width="900" height="600"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </view>
+                </viewController>
+                <customObject id="CL-responder-id" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-204" y="1500"/>
         </scene>
     </scenes>
     <resources>

@@ -11871,6 +11871,42 @@
         }
       }
     },
+    "CL-menu-item.title" : {
+      "comment" : "Class = \"NSMenuItem\"; title = \"Custom Layouts…\"; ObjectID = \"CL-menu-item\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Custom Layouts…"
+          }
+        }
+      }
+    },
+    "CL-status-menu.title" : {
+      "comment" : "Class = \"NSMenuItem\"; title = \"Custom Layouts…\"; ObjectID = \"CL-status-menu\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Custom Layouts…"
+          }
+        }
+      }
+    },
+    "CL-tab-item.label" : {
+      "comment" : "Class = \"NSTabViewItem\"; label = \"Custom Layouts\"; ObjectID = \"CL-tab-item\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Custom Layouts"
+          }
+        }
+      }
+    },
     "Conflict with macOS tiling" : {
       "extractionState" : "manual",
       "localizations" : {

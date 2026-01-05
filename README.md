@@ -44,6 +44,38 @@ Ignoring an app means that when the app is frontmost, keyboard shortcuts are un-
 
 To un-ignore an app that you have selected to ignore, simply bring that app frontmost again, open the Rectangle menu, and deselect "Ignore".
 
+### Custom Layouts (FancyZones-style)
+
+Rectangle includes a custom layout editor for creating zone-based window layouts, inspired by Windows FancyZones.
+
+**Quick Start:**
+
+1. Open Rectangle Preferences → Custom Layouts tab
+2. Click "Create New Layout" or select a preset (Two Columns, Three Columns, Grid 2×2, Three Rows, Coding Setup)
+3. Use the visual canvas editor to create/edit zones:
+   - Drag zones to move them
+   - Use handles to resize
+   - Or use "Grid Template" for quick N×M grids
+4. Click "Save" and then "Activate" the layout
+
+**Using Custom Layouts:**
+
+- **Shift + Drag**: Hold Shift while dragging a window to snap to custom zones
+- Visual footprint shows the zone boundaries as you drag
+- Each monitor can have its own active layout
+- Layouts use normalized coordinates (0.0-1.0) for resolution independence
+
+**Preset Templates:**
+
+- **Two Columns**: 50/50 left-right split
+- **Three Columns**: 33/34/33 split
+- **Grid 2×2**: Four equal quadrants
+- **Three Rows**: Horizontal 33/34/33 split
+- **Coding Setup**: 60% editor + 40% split (Terminal/Browser)
+- **Coding Setup Reverse**: Mirrored version
+
+See [CUSTOM_ZONES_GUIDE.md](CUSTOM_ZONES_GUIDE.md) for detailed documentation.
+
 ## Execute an action by URL
 
 Open the URL `rectangle://execute-action?name=[name]`. Do not activate Rectangle if possible.

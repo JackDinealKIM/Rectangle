@@ -4,6 +4,8 @@
 <dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
+	<key>CFBundleDisplayName</key>
+	<string>Rectangle</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIconFile</key>
@@ -36,16 +38,10 @@
 	<key>LSUIElement</key>
 	<true/>
 	<key>NSHumanReadableCopyright</key>
-	<string>Copyright © 2019-2025 Ryan Hanson. All rights reserved.</string>
+	<string>Based on Rectangle by Ryan Hanson. Enhanced with Custom Layouts. MIT License.</string>
 	<key>NSMainStoryboardFile</key>
 	<string>Main</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
-	<key>SUFeedURL</key>
-	<string>https://rectangleapp.com/downloads/updates.xml</string>
-	<key>SUPublicEDKey</key>
-	<string>lpt9M3PhocbZ3MZiLH+crEqRfU11kfoNzGxSqiEIdvM=</string>
-	<key>SUScheduledCheckInterval</key>
-	<integer>172800</integer>
 </dict>
 </plist>

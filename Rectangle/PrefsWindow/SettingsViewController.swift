@@ -8,7 +8,7 @@
 
 import Cocoa
 import ServiceManagement
-import Sparkle
+// import Sparkle  // Disabled auto-update
 import MASShortcut
 
 class SettingsViewController: NSViewController {
@@ -107,9 +107,10 @@ class SettingsViewController: NSViewController {
         Notification.Name.allowAnyShortcut.post(object: newSetting)
     }
     
-    @IBAction func checkForUpdates(_ sender: Any) {
-        AppDelegate.updaterController.checkForUpdates(sender)
-    }
+    // Disabled auto-update feature
+    // @IBAction func checkForUpdates(_ sender: Any) {
+    //     AppDelegate.updaterController.checkForUpdates(sender)
+    // }
     
     @IBAction func toggleDoubleClickTitleBar(_ sender: NSButton) {
         let newSetting: Bool = sender.state == .on
@@ -199,11 +200,11 @@ class SettingsViewController: NSViewController {
     
     @IBAction func restoreDefaults(_ sender: Any) {
         // Ask user if they want to restore to Rectangle or Spectacle defaults
-        let currentDefaults = Defaults.alternateDefaultShortcuts.enabled ? "Rectangle" : "Spectacle"
+        let currentDefaults = Defaults.alternateDefaultShortcuts.enabled ? "ZoneSnap" : "Spectacle"
         let defaultShortcutsTitle = NSLocalizedString("Default Shortcuts", tableName: "Main", value: "", comment: "")
         let currentlyUsingText = NSLocalizedString("Currently using: ", tableName: "Main", value: "", comment: "")
         let cancelText = NSLocalizedString("Cancel", tableName: "Main", value: "", comment: "")
-        let response = AlertUtil.threeButtonAlert(question: defaultShortcutsTitle, text: currentlyUsingText + currentDefaults, buttonOneText: "Rectangle", buttonTwoText: "Spectacle", buttonThreeText: cancelText)
+        let response = AlertUtil.threeButtonAlert(question: defaultShortcutsTitle, text: currentlyUsingText + currentDefaults, buttonOneText: "ZoneSnap", buttonTwoText: "Spectacle", buttonThreeText: cancelText)
         if response == .alertThirdButtonReturn { return }
 
         //  Restore default shortcuts
@@ -224,7 +225,7 @@ class SettingsViewController: NSViewController {
         Notification.Name.windowSnapping.post(object: false)
         let savePanel = NSSavePanel()
         savePanel.allowedFileTypes = ["json"]
-        savePanel.nameFieldStringValue = "RectangleConfig"
+        savePanel.nameFieldStringValue = "ZoneSnapConfig"
         let response = savePanel.runModal()
         if response == .OK, let url = savePanel.url {
             do {
@@ -383,14 +384,17 @@ class SettingsViewController: NSViewController {
     override func awakeFromNib() {
         initializeToggles()
 
-        checkForUpdatesAutomaticallyCheckbox.bind(.value, to: AppDelegate.updaterController.updater, withKeyPath: "automaticallyChecksForUpdates", options: nil)
-        
+        // Disabled auto-update feature
+        // checkForUpdatesAutomaticallyCheckbox.bind(.value, to: AppDelegate.updaterController.updater, withKeyPath: "automaticallyChecksForUpdates", options: nil)
+        checkForUpdatesAutomaticallyCheckbox?.isHidden = true
+        checkForUpdatesButton?.isHidden = true
+
         let appVersionString: String = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
         let buildString: String = Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as! String
-        
+
         versionLabel.stringValue = "v" + appVersionString + " (" + buildString + ")"
 
-        checkForUpdatesButton.title = NSLocalizedString("HIK-3r-i7E.title", tableName: "Main", value: "Check for Updates…", comment: "")
+        // checkForUpdatesButton.title = NSLocalizedString("HIK-3r-i7E.title", tableName: "Main", value: "Check for Updates…", comment: "")
         
         initializeTodoModeSettings()
         
@@ -443,8 +447,9 @@ class SettingsViewController: NSViewController {
     }
     
     func initializeToggles() {
-        checkForUpdatesAutomaticallyCheckbox.state = Defaults.SUEnableAutomaticChecks.enabled ? .on : .off
-        
+        // Disabled auto-update feature
+        // checkForUpdatesAutomaticallyCheckbox.state = Defaults.SUEnableAutomaticChecks.enabled ? .on : .off
+
         launchOnLoginCheckbox.state = Defaults.launchOnLogin.enabled ? .on : .off
         
         hideMenuBarIconCheckbox.state = Defaults.hideMenuBarIcon.enabled ? .on : .off

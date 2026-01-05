@@ -19,6 +19,13 @@
 		6490B39D27BF984D0056C220 /* BottomCenterLeftEighthCalculation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6490B39C27BF984D0056C220 /* BottomCenterLeftEighthCalculation.swift */; };
 		6490B39F27BF98840056C220 /* BottomCenterRightEighthCalculation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6490B39E27BF98840056C220 /* BottomCenterRightEighthCalculation.swift */; };
 		6490B3A127BF98C70056C220 /* BottomRightEighthCalculation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6490B3A027BF98C70056C220 /* BottomRightEighthCalculation.swift */; };
+		693F01D52F077E89008F9836 /* CustomLayoutDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 693F01D02F077E89008F9836 /* CustomLayoutDefaults.swift */; };
+		693F01D62F077E89008F9836 /* LayoutEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 693F01D22F077E89008F9836 /* LayoutEditorView.swift */; };
+		693F01D72F077E89008F9836 /* LayoutEditorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 693F01D32F077E89008F9836 /* LayoutEditorViewModel.swift */; };
+		693F01D82F077E89008F9836 /* CustomLayoutModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 693F01D12F077E89008F9836 /* CustomLayoutModel.swift */; };
+		693F01D92F077E89008F9836 /* LayoutManagerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 693F01D42F077E89008F9836 /* LayoutManagerView.swift */; };
+		696A38F32F0B7E4F00DC7D74 /* CustomLayoutsTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 696A38F22F0B7E4F00DC7D74 /* CustomLayoutsTabViewController.swift */; };
+		698C5DAC2F0B6E47003402B7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 698C5DAA2F0B6E47003402B7 /* InfoPlist.strings */; };
 		729E0A982AFF76B1006E2F48 /* CenterProminentlyCalculation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 729E0A972AFF76B1006E2F48 /* CenterProminentlyCalculation.swift */; };
 		74804F0B2E25521C009F1F7D /* CenterTwoThirdsCalculation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74804F0A2E25521C009F1F7D /* CenterTwoThirdsCalculation.swift */; };
 		7BE578EF2C5BF4EE0083DAE3 /* CycleSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE578EE2C5BF4ED0083DAE3 /* CycleSize.swift */; };
@@ -190,6 +197,13 @@
 		6490B39C27BF984D0056C220 /* BottomCenterLeftEighthCalculation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomCenterLeftEighthCalculation.swift; sourceTree = "<group>"; };
 		6490B39E27BF98840056C220 /* BottomCenterRightEighthCalculation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomCenterRightEighthCalculation.swift; sourceTree = "<group>"; };
 		6490B3A027BF98C70056C220 /* BottomRightEighthCalculation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomRightEighthCalculation.swift; sourceTree = "<group>"; };
+		693F01D02F077E89008F9836 /* CustomLayoutDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLayoutDefaults.swift; sourceTree = "<group>"; };
+		693F01D12F077E89008F9836 /* CustomLayoutModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLayoutModel.swift; sourceTree = "<group>"; };
+		693F01D22F077E89008F9836 /* LayoutEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutEditorView.swift; sourceTree = "<group>"; };
+		693F01D32F077E89008F9836 /* LayoutEditorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutEditorViewModel.swift; sourceTree = "<group>"; };
+		693F01D42F077E89008F9836 /* LayoutManagerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutManagerView.swift; sourceTree = "<group>"; };
+		696A38F22F0B7E4F00DC7D74 /* CustomLayoutsTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLayoutsTabViewController.swift; sourceTree = "<group>"; };
+		698C5DAB2F0B6E47003402B7 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		729E0A972AFF76B1006E2F48 /* CenterProminentlyCalculation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CenterProminentlyCalculation.swift; sourceTree = "<group>"; };
 		74804F0A2E25521C009F1F7D /* CenterTwoThirdsCalculation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CenterTwoThirdsCalculation.swift; sourceTree = "<group>"; };
 		7BE578EE2C5BF4ED0083DAE3 /* CycleSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CycleSize.swift; sourceTree = "<group>"; };
@@ -551,6 +565,13 @@
 		9824700B22AF9B7D0037B409 /* Rectangle */ = {
 			isa = PBXGroup;
 			children = (
+				696A38F22F0B7E4F00DC7D74 /* CustomLayoutsTabViewController.swift */,
+				698C5DAA2F0B6E47003402B7 /* InfoPlist.strings */,
+				693F01D02F077E89008F9836 /* CustomLayoutDefaults.swift */,
+				693F01D12F077E89008F9836 /* CustomLayoutModel.swift */,
+				693F01D22F077E89008F9836 /* LayoutEditorView.swift */,
+				693F01D32F077E89008F9836 /* LayoutEditorViewModel.swift */,
+				693F01D42F077E89008F9836 /* LayoutManagerView.swift */,
 				9824700C22AF9B7D0037B409 /* AppDelegate.swift */,
 				9824701022AF9B7E0037B409 /* Assets.xcassets */,
 				482E9E412EB1528D00D7928A /* AppIcon.icon */,
@@ -823,6 +844,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				985B9BF822BB6F5100A2E8F0 /* MessageView.xib in Resources */,
+				698C5DAC2F0B6E47003402B7 /* InfoPlist.strings in Resources */,
 				9824701122AF9B7E0037B409 /* Assets.xcassets in Resources */,
 				9824701422AF9B7E0037B409 /* Main.storyboard in Resources */,
 				981F27D12340E3E1006CD263 /* InternetAccessPolicy.plist in Resources */,
@@ -939,6 +961,7 @@
 				9821402922B3889100ABFB3F /* LowerLeftCalculation.swift in Sources */,
 				7BE578EF2C5BF4EE0083DAE3 /* CycleSize.swift in Sources */,
 				9821402122B3884600ABFB3F /* BottomHalfCalculation.swift in Sources */,
+				696A38F32F0B7E4F00DC7D74 /* CustomLayoutsTabViewController.swift in Sources */,
 				9851A5C3251BEBA300ECF78C /* OrientationAware.swift in Sources */,
 				98FD7C5F2687BC14009E9DAF /* FirstThreeFourthsCalculation.swift in Sources */,
 				983DD04028A844BE00BF1EEE /* SnapAreaViewController.swift in Sources */,
@@ -961,6 +984,11 @@
 				D04CE30227817A6100BD47B3 /* TopCenterNinthCalculation.swift in Sources */,
 				98A009B52512537800CFBF0C /* TopLeftSixthCalculation.swift in Sources */,
 				9824704F22B189250037B409 /* BestEffortWindowMover.swift in Sources */,
+				693F01D52F077E89008F9836 /* CustomLayoutDefaults.swift in Sources */,
+				693F01D62F077E89008F9836 /* LayoutEditorView.swift in Sources */,
+				693F01D72F077E89008F9836 /* LayoutEditorViewModel.swift in Sources */,
+				693F01D82F077E89008F9836 /* CustomLayoutModel.swift in Sources */,
+				693F01D92F077E89008F9836 /* LayoutManagerView.swift in Sources */,
 				30166BD024F27D6A00A38608 /* SpecifiedCalculation.swift in Sources */,
 				9824703922B0F37C0037B409 /* ShortcutManager.swift in Sources */,
 				98D16A492592B460005228CB /* NotificationExtension.swift in Sources */,
@@ -1004,6 +1032,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		698C5DAA2F0B6E47003402B7 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				698C5DAB2F0B6E47003402B7 /* ko */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
 		9821404422B3EBDA00ABFB3F /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -1224,11 +1260,13 @@
 				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = NO;
 				INFOPLIST_FILE = Rectangle/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = snap;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MACOSX_DEPLOYMENT_TARGET = 12.4;
 				MARKETING_VERSION = 0.92;
 				PRODUCT_BUNDLE_IDENTIFIER = com.knollsoft.Rectangle;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1249,18 +1287,21 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Rectangle/RectangleRelease.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 98;
 				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_TEAM = XSYZ3E4B7D;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = Rectangle/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = snap;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MACOSX_DEPLOYMENT_TARGET = 12.4;
 				MARKETING_VERSION = 0.92;
 				PRODUCT_BUNDLE_IDENTIFIER = com.knollsoft.Rectangle;
 				PRODUCT_NAME = "$(TARGET_NAME)";
